@@ -1,16 +1,13 @@
-package melissadata.globalphone.model;
+package com.melissadata.globalphone.model;
 
-import org.apache.sling.commons.json.JSONObject;
-
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.stream.Collectors;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 public class GlobalPhoneTransaction {
     private final String endpoint;
@@ -31,30 +28,23 @@ public class GlobalPhoneTransaction {
 
     public String processTransaction(String request) {
         String response = "";
-        URI uri;
-        URL url;
         try {
-            uri = new URI(request);
-            url = new URL(uri.toURL().toString());
-
-            HttpURLConnection urlConn = (HttpURLConnection)(url.openConnection());
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-
-            StringBuilder jsonResponse = new StringBuilder();
-            String inputLine = "";
-
-            while ((inputLine = in.readLine()) != null) {
-                jsonResponse.append(inputLine);
-            }
-            @SuppressWarnings("deprecation")
-            JSONObject test = new JSONObject(jsonResponse.toString());
-            response = test.toString(10);
+            URL url = new URL(request);
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(url.openStream()));
+            String responseBody = in.lines().collect(Collectors.joining());
+            response = getPrettyJSON(responseBody);
 
         } catch (Exception e){
             System.out.println("Error sending request: \n" + e);
         }
         return response;
+    }
+
+    private String getPrettyJSON(String json) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonObject responseObject = gson.fromJson(json, JsonObject.class);
+        return gson.toJson(responseObject);
     }
 
     public String generateRequestString() {

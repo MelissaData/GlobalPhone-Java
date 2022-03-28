@@ -1,9 +1,9 @@
-package melissadata.globalphone.view;
+package com.melissadata.globalphone.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import melissadata.globalphone.Main;
+import com.melissadata.globalphone.Main;
 
 public class RootLayoutController {
     // Reference to the main application

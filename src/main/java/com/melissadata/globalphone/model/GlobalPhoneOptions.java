@@ -1,4 +1,7 @@
-package melissadata.globalphone.model;
+package com.melissadata.globalphone.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -18,26 +21,21 @@ public class GlobalPhoneOptions {
     }
 
     public String generateOptionString() {
-        String optionString = "";
+        List<String> optionList = new ArrayList<>();
 
         if(!getOptionVerifyPhone().equals(""))
-            optionString += "VerifyPhone:" + getOptionVerifyPhone();
+            optionList.add("VerifyPhone:" + getOptionVerifyPhone());
 
-        if(!getOptionDefaultCallingCode().equals("") && !optionString.equals(""))
-            optionString += ",DefaultCallingCode:" + getOptionDefaultCallingCode();
-        else if(!getOptionDefaultCallingCode().equals("") && optionString.equals(""))
-            optionString += "DefaultCallingCode:" + getOptionDefaultCallingCode();
+        if(!getOptionDefaultCallingCode().equals(""))
+            optionList.add("DefaultCallingCode:" + getOptionDefaultCallingCode());
 
-        if(!getOptionTimeToWait().equals("") && !optionString.equals(""))
-            optionString += ",TimeToWait:" + getOptionTimeToWait();
-        else if(!getOptionTimeToWait().equals("") && optionString.equals(""))
-            optionString += "TimeToWait:" + getOptionTimeToWait();
+        if(!getOptionTimeToWait().equals(""))
+            optionList.add("TimeToWait:" + getOptionTimeToWait());
 
-        if(!getOptionCallerID().equals("") && !optionString.equals(""))
-            optionString += ",CallerID:" + getOptionCallerID();
-        else if(!getOptionCallerID().equals("") && optionString.equals(""))
-            optionString += "CallerID:" + getOptionCallerID();
-        return optionString;
+        if(!getOptionCallerID().equals(""))
+            optionList.add("CallerID:" + getOptionCallerID());
+
+        return String.join(",", optionList);
     }
 
     public String getOptionVerifyPhone() {

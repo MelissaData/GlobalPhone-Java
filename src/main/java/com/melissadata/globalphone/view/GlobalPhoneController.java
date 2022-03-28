@@ -1,13 +1,13 @@
-package melissadata.globalphone.view;
+package com.melissadata.globalphone.view;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import melissadata.globalphone.model.GlobalPhoneOptions;
-import melissadata.globalphone.model.GlobalPhoneTransaction;
+import com.melissadata.globalphone.model.GlobalPhoneOptions;
+import com.melissadata.globalphone.model.GlobalPhoneTransaction;
 
 public class GlobalPhoneController {
-    private melissadata.globalphone.Main main;
+    private com.melissadata.globalphone.Main main;
     private GlobalPhoneOptions option;
 
     private GlobalPhoneTransaction Transaction;
@@ -78,7 +78,7 @@ public class GlobalPhoneController {
      *
      * //@param mainApp
      */
-    public void setMainApp(melissadata.globalphone.Main main) {
+    public void setMainApp(com.melissadata.globalphone.Main main) {
         this.main = main;
     }
 

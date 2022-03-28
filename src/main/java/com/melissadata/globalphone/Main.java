@@ -1,4 +1,4 @@
-package melissadata.globalphone;
+package com.melissadata.globalphone;
 
 import java.io.IOException;
 
@@ -7,10 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import melissadata.globalphone.view.RootLayoutController;
-import melissadata.globalphone.view.GlobalPhoneController;
+import com.melissadata.globalphone.view.RootLayoutController;
+import com.melissadata.globalphone.view.GlobalPhoneController;
 
 
 public class Main extends Application {
@@ -34,7 +32,7 @@ public class Main extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -58,7 +56,7 @@ public class Main extends Application {
         try {
             // Load Global Email overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/GlobalPhone.fxml"));
+            loader.setLocation(Main.class.getResource("GlobalPhone.fxml"));
             BorderPane globalPhone = (BorderPane) loader.load();
 
             // Set Global Email
